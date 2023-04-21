@@ -27,8 +27,15 @@ function setCanvasSize() {
   
     game.font = elementsSize + 'px Verdana';
     game.textAlign = 'center';
+
+    const map = maps[0];
+    const mapRows = map.trim().split('\n');
+    const mapEachElement = mapRows.map(row => row.trim().split(''));
+
   
-    for (let i = 1; i <= 10; i++) {
-      game.fillText(emojis['X'], elementsSize * i - 8, elementsSize);
-    }
+    for(let row = 1; row <= 10; row++){
+        for(let column = 1; column <= 10; column++) {
+          game.fillText(emojis[mapEachElement[row - 1][column - 1]], elementsSize * column - 8, elementsSize * row );
+        }
+      }
   }
