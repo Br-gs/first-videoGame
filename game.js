@@ -1,6 +1,7 @@
 const canvas = document.getElementById('game');
 const game = canvas.getContext('2d');
 
+
 let canvasSize;
 let elementsSize;
 
@@ -28,14 +29,24 @@ function setCanvasSize() {
     game.font = elementsSize + 'px Verdana';
     game.textAlign = 'center';
 
-    const map = maps[0];
+    const map = maps[1];
     const mapRows = map.trim().split('\n');
     const mapEachElement = mapRows.map(row => row.trim().split(''));
 
+    mapEachElement.forEach((row, rowI) => {
+      row.forEach((col, colI) => {
+        const emoji = emojis[col];
+        const posX = elementsSize * (colI + 0.8);
+        const posY = elementsSize * (rowI + 1.1);
+        game.fillText(emoji, posX, posY);
+      });
+    });
   
-    for(let row = 1; row <= 10; row++){
+    /* for(let row = 1; row <= 10; row++){
         for(let column = 1; column <= 10; column++) {
           game.fillText(emojis[mapEachElement[row - 1][column - 1]], elementsSize * column - 8, elementsSize * row );
         }
-      }
+      } */
   }
+
+ 
